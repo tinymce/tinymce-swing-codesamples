@@ -1,7 +1,7 @@
 
 # TinyMCE in Swing: Code samples
 
-These code samples
+These code samples can be used to easily start using TinyMCE in Swing through the TinyMCES Swing Integration. Be sure to obtain a copy of the Integration to start using TinyMCE as your new Rich Text Editor.
 
 ## Getting Started
 
@@ -75,4 +75,46 @@ futureEditor.thenAccept(new Consumer<TinyMCE>() {
     tinyMCE.setBody("Hello World");
   }
 });
+```
+
+## Extending your editor
+
+The TinyMCE editor can be customized via the configuration object to better suit particular use-cases.
+
+### Custom configurations
+
+The TinyMCE editor takes a Javascript object where each of its properties is a configuration option. The Integration allows users to programmatically provide a configuration or extend a configuration via Java.
+
+### JavaScript Configuration
+
+You can provide a configuration as a Java String containing JavaScript code that, when eval'd will return a JavaScript object.
+
+```java
+final String configString = "{menubar: false, plugins: 'advlist autolink lists link image charmap print preview anchor', toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'}";
+final Config config = Config.cloud("my API Key").setInitConf(configString);
+final TinyMCE editor = TinyMCE.futureEditor(config).get();
+```
+
+### Java Configuration
+
+Alternatively to providing a JavaScript configuration, a user may simply provide a Map of properties as a configuration.
+
+```java
+HashMap<String, String> properties = new HashMap<>();
+properties.put("menubar", "false");
+properties.put("plugins", "advlist autolink lists link image anchor textcolor searchreplace visualblocks media table paste help wordcount");
+properties.put("toolbar", "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help");
+final Config config = Config.cloud("my API Key").putProperties(properties);
+final TinyMCE editor = TinyMCE.futureEditor(config).get();
+```
+
+Plugins can also be selected by passing a List of plugins to be used by the editor.
+
+```java
+List<String> plugins = new ArrayList<>();
+plugins.add("advlist");
+plugins.add("lists");
+// And so on...
+final Config config = Config.cloud("my API Key").setPlugins(plugins);
+final TinyMCE editor = TinyMCE.futureEditor(config).get();
 ```
