@@ -1,7 +1,7 @@
 package com.tinyinswing;
 
 import cloud.tiny.tinymceforswing.TinyMCE;
-import cloud.tiny.tinymceforswing.config.Config;
+import cloud.tiny.tinymceforswing.api.config.Config;
 
 import javax.swing.*;
 import java.awt.*;
