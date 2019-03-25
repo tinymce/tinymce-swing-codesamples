@@ -13,7 +13,7 @@ public class EmbeddedExample {
 
   public static void main(final String[] args) throws ExecutionException, InterruptedException {
     // Create a new embedded configuration
-    final Config embeddedBased = Config.embedded().addPlugin("link");
+    final Config embeddedBased = Config.embedded().addPlugin("link").addPlugin("print");
     // Create a new editor with the default configuration
     final TinyMCE editor = TinyMCE.futureEditor(embeddedBased).get();
     // Set the editor content
