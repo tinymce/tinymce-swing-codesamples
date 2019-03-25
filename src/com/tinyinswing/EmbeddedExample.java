@@ -11,7 +11,7 @@ public class EmbeddedExample {
 
   private EmbeddedExample(){}
 
-  public static void main(String[] args) throws ExecutionException, InterruptedException {
+  public static void main(final String[] args) throws ExecutionException, InterruptedException {
     // Create a new embedded configuration
     final Config embeddedBased = Config.embedded();
     // Create a new editor with the default configuration

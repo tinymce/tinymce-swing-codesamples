@@ -11,7 +11,7 @@ public class ExternalExample {
 
   private ExternalExample(){}
 
-  public static void main(String[] args) throws ExecutionException, InterruptedException {
+  public static void main(final String[] args) throws ExecutionException, InterruptedException {
     // Create a new external configuration by adding the url of your custom TinyMCE editor (tinymce.min.js)
     // TODO: Replace the URL with the URL of your tinyMCE library
     final Config externalBased = Config.external("http://localhost/web/tinymce/tinymce.min.js");
