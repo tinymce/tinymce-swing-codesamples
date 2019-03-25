@@ -1,3 +1,4 @@
-.idea
+/.idea
 *.iml
-out/
+/out/
+/lib/

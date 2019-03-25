@@ -8,11 +8,13 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
-public class CustomConfigurationExample extends JFrame {
+public final class CustomConfigurationExample {
 
-  public CustomConfigurationExample() throws ExecutionException, InterruptedException {
+  private CustomConfigurationExample(){}
+
+  public static void main(final String[] args) throws ExecutionException, InterruptedException {
     // This map will hold the editor properties
-    HashMap<String, String> editorProperties = new HashMap<>();
+    final HashMap<String, String> editorProperties = new HashMap<>();
     editorProperties.put("menubar", "false");
     editorProperties.put("plugins", "advlist autolink lists link image charmap print preview anchor textcolor searchreplace visualblocks code insertdatetime media table paste code help wordcount");
     editorProperties.put("toolbar", "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help");
@@ -23,19 +25,18 @@ public class CustomConfigurationExample extends JFrame {
     // Set the editor content
     editor.setBody(Utils.welcomeText);
     // The editor is best viewed using a BorderLayout
-    JPanel holder = new JPanel(new BorderLayout());
+    final JPanel holder = new JPanel(new BorderLayout());
     holder.add(editor.component(), BorderLayout.CENTER);
-    JButton printToConsole = new JButton("Print to console");
+    final JButton printToConsole = new JButton("Print to console");
     // Get the content of the editor
     printToConsole.addActionListener(e -> System.out.println(editor.getBody()));
     holder.add(printToConsole, BorderLayout.SOUTH);
-    this.add(holder);
-    this.setSize(new Dimension(800, 600));
-    this.setVisible(true);
-    this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-  }
 
-  public static void main(String args[]) throws ExecutionException, InterruptedException {
-    new CustomConfigurationExample();
+    final JFrame frame = new JFrame();
+    frame.add(holder);
+    frame.setSize(new Dimension(800, 600));
+    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    TinyMCE.shutdownOnClose(frame);
+    frame.setVisible(true);
   }
 }
