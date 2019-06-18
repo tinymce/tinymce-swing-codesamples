@@ -16,7 +16,7 @@ public final class CustomConfigurationExample {
     // This map will hold the editor properties
     final HashMap<String, String> editorProperties = new HashMap<>();
     editorProperties.put("menubar", "false");
-    editorProperties.put("plugins", "advlist autolink lists link image charmap print preview anchor textcolor searchreplace visualblocks code insertdatetime media table paste code help wordcount");
+    editorProperties.put("plugins", "advlist autolink lists link image charmap print preview anchor textcolor searchreplace visualblocks code insertdatetime media table paste powerpaste code help wordcount");
     editorProperties.put("toolbar", "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help");
     // Create a new cloud configuration by adding your API key and setting the editor properties
     final Config cloudBased = Config.cloud("my API Key").putProperties(editorProperties);
