@@ -15,9 +15,15 @@ public class CustomProtocolExample {
 
   public static void main(final String[] args) throws ExecutionException, InterruptedException {
     // Create a new embedded configuration
+    // When creating the configuration we can add custom protocol handlers
+    // A custom protocol handlers will intercept all requests for a specific protocol `<protocol>://<path>`
+    // In this example we are adding a `localimg` protocol to handler urls like: `localimg://my_image.png`
     final Config embeddedBased = Config.embedded().addPlugin("link").addPlugin("print").addPlugin("powerpaste").addProtocolHandler("localimg", new CustomProtocolHandler() {
+      // CustomProtocolHandlers use the onRequest method to take a customUrlRequest and return a CustomUrlResponse
       @Override
       public CustomURLResponse onRequest(CustomURLRequest customURLRequest) {
+        // The CustomURLRequest object contains the Url, method and headers of the request
+        // The CustomURLResponse object takes an array of bytes as the response content, an http status code (int), and, optionally, extra headers
         final CustomURLResponse r;
         if (customURLRequest.getUrl().endsWith(".png")) {
           // `localImage` is a base64 encoded image string
@@ -31,7 +37,7 @@ public class CustomProtocolExample {
     });
     // Create a new editor with the default configuration
     final TinyMCE editor = TinyMCE.futureEditor(embeddedBased).get();
-    // Set the editor content
+    // Set the editor content. The `localimg` protocol will be handled by our custom protocol handler defined previously in the configuration
     editor.setBody("<p><img src='localimg://my_image.png'></p>" +
         "<p><img src='localimg://not_an_image.txt'></p>");
     // The editor is best viewed using a BorderLayout
