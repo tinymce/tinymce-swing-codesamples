@@ -1,6 +1,7 @@
 package com.tinyinswing;
 
 import cloud.tiny.tinymceforswing.TinyMCE;
+import cloud.tiny.tinymceforswing.api.config.Cloud;
 import cloud.tiny.tinymceforswing.api.config.Config;
 
 import javax.swing.*;
@@ -14,7 +15,7 @@ public final class CloudExample {
 
   public static void main(final String[] args) throws ExecutionException, InterruptedException {
     // Create a new cloud configuration by adding your API key
-    final Config cloudBased = Config.cloud("my_api_key")
+    final Config cloudBased = Config.cloud("<my_api_key>", "5-testing")
       .setPlugins(Arrays.asList("link", "print", "tinymcespellchecker", "media", "powerpaste"));
     // Create a new editor with the default cloud configuration
     final TinyMCE editor = TinyMCE.futureEditor(cloudBased).get();
