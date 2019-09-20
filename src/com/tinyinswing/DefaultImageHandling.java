@@ -9,9 +9,7 @@ import java.awt.*;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.function.Consumer;
 
 public class DefaultImageHandling {
 
@@ -60,14 +58,7 @@ public class DefaultImageHandling {
             }
           }
         });
-    // Create a new editor with the default cloud configuration
-    final CompletableFuture<TinyMCE> futureEditor = TinyMCE.futureEditor(config);
-    futureEditor.thenAccept(new Consumer<TinyMCE>() {
-      @Override
-      public void accept(final TinyMCE tinyMCE) {
-        tinyMCE.setBody("Hello World");
-      }
-    });
+    // Create a new editor with the default embedded configuration
     final TinyMCE editor = TinyMCE.futureEditor(config).get();
     // Set the editor content
     editor.setBody(Utils.welcomeText);
