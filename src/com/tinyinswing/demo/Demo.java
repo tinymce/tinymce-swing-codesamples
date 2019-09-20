@@ -16,14 +16,8 @@ import java.util.concurrent.ExecutionException;
 
 public class Demo extends JFrame {
 
-  public Demo() {
-    try {
-      init(this);
-    } catch (ExecutionException e) {
-      e.printStackTrace();
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+  public Demo() throws InterruptedException, ExecutionException {
+    init(this);
   }
 
   private void init(JFrame locationRelativeTo) throws ExecutionException, InterruptedException {
@@ -47,29 +41,20 @@ public class Demo extends JFrame {
         popup.setSize(300, 60);
         popup.setModal(true);
         final JPanel panel = new JPanel(new FlowLayout());
-        final JTextField textfield = new JTextField();
-        if (!s.isEmpty()) {
-          textfield.setText(s);
-        }
+        final JTextField textfield = new JTextField(s);
         textfield.setPreferredSize(new Dimension(200, 24));
         panel.add(textfield);
-        final JButton button = new JButton("Insert");
-        button.addActionListener(new ActionListener() {
+        final JButton insert = new JButton("Insert");
+        insert.addActionListener(new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent actionEvent) {
+            // we can interact with the editor from our dialog
+            tinyMCE.insertHtml("<a href='http://google.com'>" + textfield.getText() + "</a>");
             popup.dispose();
           }
         });
-        panel.add(button);
+        panel.add(insert);
         popup.setContentPane(panel);
-        popup.addWindowListener(new WindowAdapter() {
-          @Override
-          public void windowClosed(WindowEvent windowEvent) {
-            super.windowClosed(windowEvent);
-            // we can interact with the editor from our dialog
-            tinyMCE.insertHtml("<a href='http://google.com'>" + textfield.getText() + "</a>");
-          }
-        });
         popup.setLocationRelativeTo(locationRelativeTo);
         popup.setVisible(true);
       }
@@ -85,7 +70,7 @@ public class Demo extends JFrame {
     setVisible(true);
   }
 
-  public static void main(String args[]) {
+  public static void main(String args[]) throws InterruptedException, ExecutionException {
     new Demo();
   }
 }
