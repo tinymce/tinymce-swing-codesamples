@@ -1,4 +1,4 @@
-package com.tinyinswing;
+package cloud.tiny.tinyinswing.shared;
 
 public class Utils {
 
@@ -26,6 +26,8 @@ public class Utils {
       "<p style=\"text-align: center;\">&nbsp;</p>\n"+
       "</body>\n"+
       "</html>";
+
+  public static final String lorumIpsum = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>";
 
   public final static String sampleText = "<p style=\"text-align: center;\"><img title=\"TinyMCE Logo\" src=\"https://www.tiny.cloud/images/glyph-tinymce@2x.png\" alt=\"TinyMCE Logo\" width=\"110\" height=\"97\" /></p>\n" +
       "<h1 style=\"text-align: center;\">Welcome to the TinyMCE editor demo!</h1>\n" +
