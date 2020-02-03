@@ -1,10 +1,12 @@
-package com.tinyinswing;
+package cloud.tiny.tinyinswing.examples.customprotocol;
 
 import cloud.tiny.tinymceforswing.TinyMCE;
 import cloud.tiny.tinymceforswing.api.config.Config;
 import cloud.tiny.tinymceforswing.api.config.wrappers.CustomProtocolHandler;
 import cloud.tiny.tinymceforswing.api.config.wrappers.CustomURLRequest;
 import cloud.tiny.tinymceforswing.api.config.wrappers.CustomURLResponse;
+
+import cloud.tiny.tinyinswing.shared.Utils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,12 +15,12 @@ import java.util.concurrent.ExecutionException;
 
 public class CustomProtocolExample {
 
+  private CustomProtocolExample() {}
+
   public static void main(final String[] args) throws ExecutionException, InterruptedException {
-    // Create a new embedded configuration
-    // When creating the configuration we can add custom protocol handlers
     // A custom protocol handlers will intercept all requests for a specific protocol `<protocol>://<path>`
     // In this example we are adding a `localimg` protocol to handler urls like: `localimg://my_image.png`
-    final Config embeddedBased = Config.embedded().addPlugin("link").addPlugin("print").addPlugin("powerpaste").addProtocolHandler("localimg", new CustomProtocolHandler() {
+    TinyMCE.addProtocolHandler("localimg", new CustomProtocolHandler() {
       // CustomProtocolHandlers use the onRequest method to take a customUrlRequest and return a CustomUrlResponse
       @Override
       public CustomURLResponse onRequest(CustomURLRequest customURLRequest) {
@@ -35,23 +37,25 @@ public class CustomProtocolExample {
         return r;
       }
     });
+    // Create a new embedded configuration
+    final Config config = Config.embedded().addPlugin("link").addPlugin("print").addPlugin("powerpaste");
     // Create a new editor with the default configuration
-    final TinyMCE editor = TinyMCE.futureEditor(embeddedBased).get();
-    // Set the editor content. The `localimg` protocol will be handled by our custom protocol handler defined previously in the configuration
-    editor.setBody("<p><img src='localimg://my_image.png'></p>" +
+    final TinyMCE editor = TinyMCE.futureEditor(config).get();
+    // Set the editor content. The `localimg` protocol will be handled by our custom protocol handler defined previously
+    editor.setHtml("<p><img src='localimg://my_image.png'></p>" +
         "<p><img src='localimg://not_an_image.txt'></p>");
-    // The editor is best viewed using a BorderLayout
-    final JPanel holder = new JPanel(new BorderLayout());
-    holder.add(editor.component(), BorderLayout.CENTER);
+    // Create a button to get the content of the editor
     final JButton printToConsole = new JButton("Print to console");
-    // Get the content of the editor
-    printToConsole.addActionListener(e -> System.out.println(editor.getBody()));
-    holder.add(printToConsole, BorderLayout.SOUTH);
-
+    printToConsole.addActionListener(e -> System.out.println(editor.getHtml()));
+    // Add the editor and button to the JFrame
     final JFrame frame = new JFrame();
-    frame.add(holder);
-    frame.setSize(new Dimension(800, 600));
-    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    frame.add(editor.component(), BorderLayout.CENTER);
+    frame.add(printToConsole, BorderLayout.SOUTH);
+    frame.pack();
+    frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    // ensure the editor resources are cleaned up when the window is closed
+    TinyMCE.shutdownOnClose(frame);
+    // display the editor
     frame.setVisible(true);
   }
 }

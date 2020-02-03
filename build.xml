@@ -1,0 +1,82 @@
+<project name="TinyMCE Swing Codesamples" default="example-basic-embedded" basedir=".">
+  <description>
+    Build and run code samples for "TinyMCE for Swing".
+  </description>
+  <!-- set global properties for this build -->
+  <property name="lib" location="lib"/>
+  <property name="src" location="src"/>
+  <property name="out" location="out"/>
+
+  <path id="classpath.libs">
+    <fileset dir="${lib}">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+
+  <path id="classpath.all">
+    <fileset dir="${lib}">
+      <include name="**/*.jar"/>
+    </fileset>
+    <pathelement location="${out}"/>
+  </path>
+
+  <target name="clean" description="Clean up.">
+    <delete dir="${out}"/>
+  </target>
+
+  <target name="init">
+    <mkdir dir="${out}"/>
+    <copy todir="${out}" >  
+      <fileset dir="${src}">
+        <include name="**"/>
+        <exclude name="**/*.java"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="compile" depends="init" description="Compile the source.">
+    <javac srcdir="${src}" destdir="${out}" classpathref="classpath.libs" includeantruntime="false">
+      <compilerarg value="-Xlint"/>
+    </javac>
+  </target>
+
+  <target name="example-basic-cloud" depends="compile" description="Run the basic cloud example (requires setting API key).">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.basic.cloud.CloudExample" fork="true" failonerror="true" />
+  </target>
+
+  <target name="example-basic-embedded" depends="compile" description="Run the basic embedded example.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.basic.embedded.EmbeddedExample" fork="true" failonerror="true" />
+  </target>
+
+  <target name="example-basic-external" depends="compile" description="Run the basic external example (requires hosting TinyMCE).">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.basic.external.ExternalExample" fork="true" failonerror="true" />
+  </target>
+
+  <target name="example-config-js" depends="compile" description="Run the example of configuring TinyMCE from a Javascript file.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.configuration.javascript.JsConfigurationExample" fork="true" failonerror="true" />
+  </target>
+
+  <target name="example-config-props" depends="compile" description="Run the example of configuring TinyMCE directly in Java.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.configuration.properties.PropertiesConfigurationExample" fork="true" failonerror="true" />
+  </target>
+
+  <target name="example-custom-protocol" depends="compile" description="Run the example of configuring a custom protocol handler.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.customprotocol.CustomProtocolExample" fork="true" failonerror="true" />
+  </target>
+
+  <target name="example-dialog" depends="compile" description="Run the example of accessing the editor from a dialog.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.dialog.DialogExample" fork="true" failonerror="true" />
+  </target>
+
+  <target name="example-events" depends="compile" description="Run the events example.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.events.EventsExample" fork="true" failonerror="true" />
+  </target>
+
+  <target name="example-image-handling" depends="compile" description="Run the example of a simple image upload handler.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.imagehandling.ImageHandlingExample" fork="true" failonerror="true" />
+  </target>
+
+  <target name="example-multiple-editors" depends="compile" description="Run the example of multiple editors.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.multipleeditors.MultipleEditorsExample" fork="true" failonerror="true" />
+  </target>
+</project>
