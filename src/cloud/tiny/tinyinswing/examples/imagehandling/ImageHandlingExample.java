@@ -12,12 +12,38 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
+import java.nio.file.*;
+import java.io.*;
 
 public class ImageHandlingExample {
 
   private ImageHandlingExample() {}
 
   public static void main(final String[] args) throws ExecutionException, InterruptedException {
+
+    // Create a protocol handler for "afile" instead of "file" (as chrome won't report file) and use Javascript to rewrite the URLs (see config.js)
+    TinyMCE.addProtocolHandler("afile", new CustomProtocolHandler() {
+      @Override
+      public CustomURLResponse onRequest(CustomURLRequest request) {
+        String strPath = request.getUrl().substring(8);
+        System.out.println("Requesting " + strPath);
+        try {
+          Path path = Paths.get(strPath);
+          byte[] bytes = Files.readAllBytes(path);
+          return new CustomURLResponse(bytes, 200);
+        } catch (IOException e) {
+          e.printStackTrace();
+          // If we did not find the image, we return a 404
+          return new CustomURLResponse("".getBytes(), 404);
+        } catch (SecurityException e) {
+          e.printStackTrace();
+          // If we failed to access the image, we return a 404
+          return new CustomURLResponse("".getBytes(), 404);
+        }
+      }
+    });
+
+
     // Make a map to store images in base64
     final HashMap<String, String> imageCache = new HashMap<>();
 
@@ -41,7 +67,9 @@ public class ImageHandlingExample {
         }
       }
     });
-    final Config config = Config.embedded().addPlugin("image").putProperty("toolbar", "image")
+
+    final Config config = Config.embedded().enableDebugging(9222)
+      .setInitConf(ImageHandlingExample.class, "config.js")
       /* Set up an Image Upload Handler
       You must provide an imageUploadHandler that will take a TinyBlob object and return
       an Optional<String> of the new path of the stored image if stored successfully or
@@ -60,11 +88,12 @@ public class ImageHandlingExample {
       });
     // Create a new editor with the above configuration
     final TinyMCE editor = TinyMCE.futureEditor(config).get();
-    // Set the editor content
-    editor.setHtml(Utils.welcomeText);
+    
+    // Set the editor content, update this URL to point at a local file
+    editor.setHtml("<img src=\"file:///home/james/images/baboon.png\">");
     // Create a button to get the content of the editor
-    final JButton printToConsole = new JButton("Print to console");
-    printToConsole.addActionListener(e -> System.out.println(editor.getHtml()));
+    final JButton printToConsole = new JButton("Debug");
+    printToConsole.addActionListener(e -> editor.debug().main().showDebugger());
     // Add the editor and button to the JFrame
     final JFrame frame = new JFrame();
     frame.add(editor.component(), BorderLayout.CENTER);
