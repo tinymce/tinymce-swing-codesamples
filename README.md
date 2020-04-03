@@ -1,7 +1,7 @@
 
 # TinyMCE in Swing: Code samples
 
-These code samples can be used to easily start using TinyMCE in Swing through the TinyMCES Swing Integration. Be sure to obtain a copy of the Integration to start using TinyMCE as your new Rich Text Editor.
+These code samples can be used to easily start using TinyMCE in Swing through the TinyMCE Swing Integration. Be sure to obtain a copy of the Integration to start using TinyMCE as your new Rich Text Editor.
 
 ## Getting Started
 
