@@ -9,7 +9,8 @@ The following steps will guide you as you deploy the Tiny Swing Integration in y
 
 ### Prerequisites
 
-Get a copy of the TinyMCE-Swing Integration
+Get a copy of the TinyMCE-Swing Integration.  
+The TinyMCE swing integration is a premium add-on to TinyMCE which your company can purchase via [TinyMCE's sales team](https://www.tiny.cloud/contact).
 
 ### Installing
 
