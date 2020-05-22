@@ -18,7 +18,7 @@ public class EventsExample {
         // the event listener is declared for a class which has been annotated (look at JavaLink.java to see how)
         .on(JavaLink.class, evt -> {
           // the event has 4 properties:
-          // editor - a reference to tinymce if the editor has been full initialized, otherwise empty.
+          // editor - a reference to tinymce if the editor has been initialized, otherwise empty.
           // events - a interface that allows managing subscriptions to events and firing new events.
           // name - the event name in lowercase.
           // data - the event data which is an instance of the class used to subscribe to the event (ie JavaLink in this case).
