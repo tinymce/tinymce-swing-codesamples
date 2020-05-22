@@ -79,4 +79,7 @@
   <target name="example-multiple-editors" depends="compile" description="Run the example of multiple editors.">
     <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.multipleeditors.MultipleEditorsExample" fork="true" failonerror="true" />
   </target>
+  <target name="example-text-range" depends="compile" description="Run the example of text range.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.textrange.TextRangeExample" fork="true" failonerror="true" />
+  </target>
 </project>
