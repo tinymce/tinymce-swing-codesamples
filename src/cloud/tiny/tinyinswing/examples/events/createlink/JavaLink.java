@@ -1,4 +1,4 @@
-package cloud.tiny.tinyinswing.examples.events;
+package cloud.tiny.tinyinswing.examples.events.createlink;
 
 import cloud.tiny.tinymceforswing.api.event.Event;
 import cloud.tiny.tinymceforswing.api.jsdata.JsObj;

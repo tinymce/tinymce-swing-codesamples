@@ -1,4 +1,4 @@
-package cloud.tiny.tinyinswing.examples.events;
+package cloud.tiny.tinyinswing.examples.events.createlink;
 
 import cloud.tiny.tinyinswing.shared.Utils;
 import cloud.tiny.tinymceforswing.TinyMCE;
@@ -7,14 +7,14 @@ import java.util.concurrent.ExecutionException;
 import javax.swing.*;
 
 
-public class EventsExample {
+public class CreateLinkEventsExample {
 
-  private EventsExample() {}
+  private CreateLinkEventsExample() {}
 
   public static void main(String args[]) throws InterruptedException, ExecutionException {
     // create the editor using the javascript config.js and a event listener
     final Config config = Config.embedded()
-        .setInitConf(EventsExample.class, "config.js")
+        .setInitConf(CreateLinkEventsExample.class, "config.js")
         // the event listener is declared for a class which has been annotated (look at JavaLink.java to see how)
         .on(JavaLink.class, evt -> {
           // the event has 4 properties:

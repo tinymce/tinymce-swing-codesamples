@@ -68,8 +68,16 @@
     <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.dialog.DialogExample" fork="true" failonerror="true" />
   </target>
 
-  <target name="example-events" depends="compile" description="Run the events example.">
-    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.events.EventsExample" fork="true" failonerror="true" />
+  <target name="example-events-basic-js-to-java" depends="compile" description="Run the basic example of sending events to java.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.events.basicjstojava.BasicJsToJavaEventsExample" fork="true" failonerror="true" />
+  </target>
+
+  <target name="example-events-basic-java-to-js" depends="compile" description="Run the basic example of sending events to js.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.events.basicjavatojs.BasicJavaToJsEventsExample" fork="true" failonerror="true" />
+  </target>
+
+  <target name="example-events-create-link" depends="compile" description="Run the events example of combining Js and Java UI.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.events.createlink.EventsExample" fork="true" failonerror="true" />
   </target>
 
   <target name="example-image-handling" depends="compile" description="Run the example of a simple image upload handler.">
