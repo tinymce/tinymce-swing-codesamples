@@ -77,7 +77,7 @@
   </target>
 
   <target name="example-events-create-link" depends="compile" description="Run the events example of combining Js and Java UI.">
-    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.events.createlink.EventsExample" fork="true" failonerror="true" />
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.events.createlink.CreateLinkEventsExample" fork="true" failonerror="true" />
   </target>
 
   <target name="example-image-handling" depends="compile" description="Run the example of a simple image upload handler.">
