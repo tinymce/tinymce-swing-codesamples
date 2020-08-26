@@ -80,8 +80,14 @@
     <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.events.createlink.CreateLinkEventsExample" fork="true" failonerror="true" />
   </target>
 
-  <target name="example-image-handling" depends="compile" description="Run the example of a simple image upload handler.">
-    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.imagehandling.ImageHandlingExample" fork="true" failonerror="true" />
+  <target name="example-old-image-handling" depends="compile" description="Run the example of a image upload handler using custom protocol handlers. Due to the use of non-http[s] protocol this method does not support image editing without a lot of effort.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.image.protocolhandler.ImagesProtocolHandlerExample" fork="true" failonerror="true" />
+  </target>
+
+  <target name="example-image-saving-local" depends="compile" description="Run the example of local image saving and editing." >
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.image.savinglocal.ImagesSavedLocallyExample" fork="true" failonerror="true" >
+      <arg value="${basedir}/assets"/>
+    </java>
   </target>
 
   <target name="example-multiple-editors" depends="compile" description="Run the example of multiple editors.">
