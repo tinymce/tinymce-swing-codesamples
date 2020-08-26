@@ -1,21 +1,21 @@
-package cloud.tiny.tinyinswing.examples.imagehandling;
+package cloud.tiny.tinyinswing.examples.image.protocolhandler;
 
+import cloud.tiny.tinyinswing.shared.Utils;
 import cloud.tiny.tinymceforswing.TinyMCE;
 import cloud.tiny.tinymceforswing.api.config.Config;
 import cloud.tiny.tinymceforswing.api.config.wrappers.*;
-
-import cloud.tiny.tinyinswing.shared.Utils;
-
-import javax.swing.*;
 import java.awt.*;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
+import javax.swing.*;
 
-public class ImageHandlingExample {
 
-  private ImageHandlingExample() {}
+
+public class ImageByProtocolHandlerExample {
+
+  private ImageByProtocolHandlerExample() {}
 
   public static void main(final String[] args) throws ExecutionException, InterruptedException {
     // Make a map to store images in base64
