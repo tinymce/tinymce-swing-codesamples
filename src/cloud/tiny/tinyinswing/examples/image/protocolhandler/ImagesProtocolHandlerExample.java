@@ -13,9 +13,9 @@ import javax.swing.*;
 
 
 
-public class ImageByProtocolHandlerExample {
+public class ImagesProtocolHandlerExample {
 
-  private ImageByProtocolHandlerExample() {}
+  private ImagesProtocolHandlerExample() {}
 
   public static void main(final String[] args) throws ExecutionException, InterruptedException {
     // Make a map to store images in base64
