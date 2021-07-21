@@ -96,4 +96,7 @@
   <target name="example-text-range" depends="compile" description="Run the example of text range.">
     <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.textrange.TextRangeExample" fork="true" failonerror="true" />
   </target>
+  <target name="example-drag-n-drop" depends="compile" description="Run the example of drag and drop to TinyMCE.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.dragndrop.DragNDropExample" fork="true" failonerror="true" />
+  </target>
 </project>
