@@ -49,44 +49,42 @@ public class DragNDropExample {
     }
   }
 
-  public static void setup() throws ExecutionException, InterruptedException {
-    // Create a new embedded configuration
-    final Config embeddedBased = Config.embedded().addPlugin("powerpaste").putProperty("powerpaste_html_import", "merge");
-    // Create a new editor with the default configuration
-    final TinyMCE editor = TinyMCE.futureEditor(embeddedBased).get();
-    // Set the editor content
-    editor.setHtml(Utils.lorumIpsum);
-    // Create a JTextArea which we can drag HTML from
-    final JTextArea source = new JTextArea(Utils.welcomeText, 50, 70);
-    source.setLineWrap(true);
-    source.setDragEnabled(true);
-    source.setTransferHandler(new HtmlTransferHandler());
-    final JScrollPane sourceScroll = new JScrollPane(source);
-    // Create a button to get the content of the editor
-    final JButton printToConsole = new JButton("Print to console");
-    printToConsole.addActionListener(e -> System.out.println(editor.getHtml()));
-    // Add the editor and button to the JFrame
-    final JFrame frame = new JFrame("Drag from a Java component into the editor");
-    frame.add(sourceScroll, BorderLayout.WEST);
-    frame.add(editor.component(), BorderLayout.EAST);
-    frame.add(printToConsole, BorderLayout.SOUTH);
-    frame.pack();
-    frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    // ensure the editor resources are cleaned up when the window is closed
-    TinyMCE.shutdownOnClose(frame);
-    // display the editor
-    frame.setVisible(true);
-  }
-
-  public static void run() {
+  private static void createAndShowGUI() {
     try {
-      setup();
-    } catch (Exception e) {
+      // Create a new embedded configuration
+      final Config embeddedBased = Config.embedded()
+          .putProperty("powerpaste_html_import", "merge")
+          .putProperty("skin", "tinymce-5");
+      // Create a new editor with the default configuration
+      final TinyMCE editor = TinyMCE.futureEditor(embeddedBased).get();
+      // Set the editor content
+      editor.setHtml(Utils.sampleText);
+      // Create a JTextArea which we can drag HTML from
+      final JTextArea source = new JTextArea(Utils.sampleText, 50, 70);
+      source.setLineWrap(true);
+      source.setDragEnabled(true);
+      source.setTransferHandler(new HtmlTransferHandler());
+      final JScrollPane sourceScroll = new JScrollPane(source);
+      // Create a button to get the content of the editor
+      final JButton printToConsole = new JButton("Print to console");
+      printToConsole.addActionListener(e -> System.out.println(editor.getHtml()));
+      // Add the editor and button to the JFrame
+      final JFrame frame = new JFrame("Drag from a Java component into the editor");
+      frame.add(sourceScroll, BorderLayout.WEST);
+      frame.add(editor.component(), BorderLayout.EAST);
+      frame.add(printToConsole, BorderLayout.SOUTH);
+      frame.pack();
+      frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+      // ensure the editor resources are cleaned up when the window is closed
+      TinyMCE.shutdownOnClose(frame);
+      // display the editor
+      frame.setVisible(true);
+    } catch (ExecutionException | InterruptedException e) {
       e.printStackTrace();
     }
   }
 
   public static void main(String[] args) {
-    SwingUtilities.invokeLater(DragNDropExample::run);
+    SwingUtilities.invokeLater(DragNDropExample::createAndShowGUI);
   }
 }
