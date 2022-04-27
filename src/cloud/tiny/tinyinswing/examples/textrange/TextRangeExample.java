@@ -3,6 +3,7 @@ package cloud.tiny.tinyinswing.examples.textrange;
 import cloud.tiny.tinymceforswing.TinyMCE;
 import cloud.tiny.tinymceforswing.api.config.Config;
 import cloud.tiny.tinymceforswing.api.editor.TextRange;
+import cloud.tiny.tinyinswing.shared.Utils;
 import java.awt.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -20,6 +21,7 @@ public class TextRangeExample {
       // create both editors in parallel
       final CompletableFuture<TinyMCE> f1 = TinyMCE.futureEditor(config);
       final TinyMCE e1 = f1.get();
+      e1.setHtml(Utils.sampleText);
       final JTextArea e2 = new JTextArea(10, 60);
       // create buttons to pass the editor content between the two editors
       final JButton toTheRight = new JButton(">>");
@@ -53,7 +55,7 @@ public class TextRangeExample {
       c.gridx = 0;
       frame.add(e1.component(), c);
       c.gridx = 2;
-      frame.add(e2, c);
+      frame.add(new JScrollPane(e2), c);
       c.fill = GridBagConstraints.NONE;
       c.weightx = 0;
       c.weighty = 1;
