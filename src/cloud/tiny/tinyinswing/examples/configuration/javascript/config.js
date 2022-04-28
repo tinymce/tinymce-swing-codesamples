@@ -11,6 +11,5 @@
       '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
       '//www.tiny.cloud/css/codepen.min.css'
     ],
-    skin: 'tinymce-5'
   };
 })()

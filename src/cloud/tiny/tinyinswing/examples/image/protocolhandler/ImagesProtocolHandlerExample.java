@@ -43,7 +43,7 @@ public class ImagesProtocolHandlerExample {
         }
       });
       final Config config = Config.embedded().addPlugin("image")
-        .putProperty("toolbar", "image").putProperty("skin", "tinymce-5")
+        .putProperty("toolbar", "image")
         /* Set up an Image Upload Handler
         You must provide an imageUploadHandler that will take a TinyBlob object and return
         an Optional<String> of the new path of the stored image if stored successfully or

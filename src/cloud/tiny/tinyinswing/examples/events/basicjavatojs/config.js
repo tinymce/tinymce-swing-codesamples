@@ -2,7 +2,6 @@
   return {
     plugins: 'code',
     toolbar: 'undo redo | blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
-    skin: 'tinymce-5',
     // On setup define our listeners to record events based on basic types
     setup(editor) {
       editor.on('my-string-event', (evt) => {

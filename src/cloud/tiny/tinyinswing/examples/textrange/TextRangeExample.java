@@ -16,8 +16,7 @@ public class TextRangeExample {
 
   private static void createAndShowGUI() {
     try {
-      final Config config = Config.embedded().putProperty("menubar", "false")
-          .putProperty("skin", "tinymce-5");
+      final Config config = Config.embedded().putProperty("menubar", "false");
       // create both editors in parallel
       final CompletableFuture<TinyMCE> f1 = TinyMCE.futureEditor(config);
       final TinyMCE e1 = f1.get();

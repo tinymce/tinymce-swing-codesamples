@@ -48,7 +48,7 @@ public final class DialogExample {
   }
 
   private static void displayDialog(final JEditorPane pane, final JButton edit) {
-    final Config config = Config.embedded().putProperty("skin", "tinymce-5");
+    final Config config = Config.embedded();
     TinyMCE.futureEditor(config).thenAccept(editor -> openDialog(editor, pane, edit));
   }
 

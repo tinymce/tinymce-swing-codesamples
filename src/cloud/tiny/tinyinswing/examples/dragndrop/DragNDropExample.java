@@ -53,8 +53,7 @@ public class DragNDropExample {
     try {
       // Create a new embedded configuration
       final Config embeddedBased = Config.embedded()
-          .putProperty("powerpaste_html_import", "merge")
-          .putProperty("skin", "tinymce-5");
+          .putProperty("powerpaste_html_import", "merge");
       // Create a new editor with the default configuration
       final TinyMCE editor = TinyMCE.futureEditor(embeddedBased).get();
       // Set the editor content

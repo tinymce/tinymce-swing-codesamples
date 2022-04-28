@@ -24,8 +24,7 @@ public class ImagesSavedLocallyExample {
           .setContentPath(contentPath)
           .setImageSaverLocal(contentPath)
           .addPlugin("image").addPlugin("imagetools")
-          .putProperty("toolbar", "image")
-          .putProperty("skin", "tinymce-5");
+          .putProperty("toolbar", "image");
       // Create a new editor with the default configuration
       final TinyMCE editor = TinyMCE.futureEditor(config).get();
       // Set the editor content

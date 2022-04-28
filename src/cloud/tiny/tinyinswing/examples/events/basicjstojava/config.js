@@ -1,7 +1,6 @@
 (function() {
   return {
     plugins: 'code',
-    skin: 'tinymce-5',
     toolbar: 'StringEvent DoubleEvent BooleanEvent | IntegerEvent LongEvent',
     // On setup define our buttons to fire events based on basic types
     setup(editor) {

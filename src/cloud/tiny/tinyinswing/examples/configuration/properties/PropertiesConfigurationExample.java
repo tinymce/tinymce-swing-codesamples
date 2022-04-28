@@ -19,8 +19,7 @@ public final class PropertiesConfigurationExample {
       final Config config = Config.embedded()
         .addPlugins("advlist anchor autolink charmap code fullscreen help image insertdatetime link lists media preview searchreplace table visualblocks wordcount")
         .putProperty("toolbar", "undo redo | blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help")
-        .putProperty("menubar", false)
-        .putProperty("skin", "tinymce-5");
+        .putProperty("menubar", false);
       // Create a new editor with the configuration
       final TinyMCE editor = TinyMCE.futureEditor(config).get();
       // Set the editor content

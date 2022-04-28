@@ -39,7 +39,7 @@ public class CustomProtocolExample {
         }
       });
       // Create a new embedded configuration
-      final Config config = Config.embedded().addPlugin("link").putProperty("skin", "tinymce-5");
+      final Config config = Config.embedded().addPlugin("link");
       // Create a new editor with the default configuration
       final TinyMCE editor = TinyMCE.futureEditor(config).get();
       // Set the editor content. The `localimg` protocol will be handled by our custom protocol handler defined previously
