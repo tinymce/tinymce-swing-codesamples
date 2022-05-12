@@ -2,6 +2,11 @@
   <description>
     Build and run code samples for "TinyMCE for Swing".
   </description>
+  <!-- Configure the cloud and external examples -->
+  <property name="tinyCloudApiKey" value="no-api-key"/>
+  <property name="tinyCloudChannel" value="6"/>
+  <property name="tinymceUrl" value="http://localhost/web/tinymce/tinymce.min.js"/>
+
   <!-- set global properties for this build -->
   <property name="lib" location="lib"/>
   <property name="src" location="src"/>
@@ -41,7 +46,10 @@
   </target>
 
   <target name="example-basic-cloud" depends="compile" description="Run the basic cloud example (requires setting API key).">
-    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.basic.cloud.CloudExample" fork="true" failonerror="true" />
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.basic.cloud.CloudExample" fork="true" failonerror="true" >
+      <env key="CLOUD_API_KEY" value="${tinyCloudApiKey}"/>
+      <env key="CLOUD_CHANNEL" value="${tinyCloudChannel}"/>
+    </java>
   </target>
 
   <target name="example-basic-embedded" depends="compile" description="Run the basic embedded example.">
@@ -49,7 +57,9 @@
   </target>
 
   <target name="example-basic-external" depends="compile" description="Run the basic external example (requires hosting TinyMCE).">
-    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.basic.external.ExternalExample" fork="true" failonerror="true" />
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.basic.external.ExternalExample" fork="true" failonerror="true" >
+      <env key="TINYMCE_URL" value="${tinymceUrl}"/>
+    </java>
   </target>
 
   <target name="example-config-js" depends="compile" description="Run the example of configuring TinyMCE from a Javascript file.">
@@ -67,13 +77,17 @@
   <target name="example-dialog" depends="compile" description="Run the example of accessing the editor from a dialog.">
     <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.dialog.DialogExample" fork="true" failonerror="true" />
   </target>
-
-  <target name="example-events-basic-js-to-java" depends="compile" description="Run the basic example of sending events to java.">
-    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.events.basicjstojava.BasicJsToJavaEventsExample" fork="true" failonerror="true" />
+  
+  <target name="example-drag-n-drop" depends="compile" description="Run the example of drag and drop to TinyMCE.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.dragndrop.DragNDropExample" fork="true" failonerror="true" />
   </target>
 
   <target name="example-events-basic-java-to-js" depends="compile" description="Run the basic example of sending events to js.">
     <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.events.basicjavatojs.BasicJavaToJsEventsExample" fork="true" failonerror="true" />
+  </target>
+
+  <target name="example-events-basic-js-to-java" depends="compile" description="Run the basic example of sending events to java.">
+    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.events.basicjstojava.BasicJsToJavaEventsExample" fork="true" failonerror="true" />
   </target>
 
   <target name="example-events-create-link" depends="compile" description="Run the events example of combining Js and Java UI.">
@@ -93,10 +107,8 @@
   <target name="example-multiple-editors" depends="compile" description="Run the example of multiple editors.">
     <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.multipleeditors.MultipleEditorsExample" fork="true" failonerror="true" />
   </target>
+
   <target name="example-text-range" depends="compile" description="Run the example of text range.">
     <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.textrange.TextRangeExample" fork="true" failonerror="true" />
-  </target>
-  <target name="example-drag-n-drop" depends="compile" description="Run the example of drag and drop to TinyMCE.">
-    <java classpathref="classpath.all" classname="cloud.tiny.tinyinswing.examples.dragndrop.DragNDropExample" fork="true" failonerror="true" />
   </target>
 </project>

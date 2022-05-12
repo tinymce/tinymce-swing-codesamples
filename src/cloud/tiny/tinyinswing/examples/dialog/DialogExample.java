@@ -52,7 +52,7 @@ public final class DialogExample {
     TinyMCE.futureEditor(config).thenAccept(editor -> openDialog(editor, pane, edit));
   }
 
-  public static void main(final String[] args) {
+  private static void createAndShowGUI() {
     final JEditorPane editable = new JEditorPane();
     editable.setContentType("text/html");
     editable.setText(Utils.sampleText);
@@ -75,5 +75,9 @@ public final class DialogExample {
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     TinyMCE.shutdownOnClose(frame);
     frame.setVisible(true);
+  }
+
+  public static void main(final String[] args) {
+    SwingUtilities.invokeLater(DialogExample::createAndShowGUI);
   }
 }
